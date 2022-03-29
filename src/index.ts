@@ -49,7 +49,7 @@ function createPlugin(options: Options = {}): Plugin {
     name: 'svg-sprite-component',
     transform: async (source, path) => {
       if (!path.match(matcher || /\.svg$/i)) {
-        return source
+        return null
       }
       let tmp = cache.get(path);
       if (tmp) {

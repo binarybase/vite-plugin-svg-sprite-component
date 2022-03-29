@@ -35,13 +35,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var fs_1 = require("fs");
 var htmlparser2_1 = require("htmlparser2");
-var dom_serializer_1 = __importDefault(require("dom-serializer"));
+var dom_serializer_1 = require("dom-serializer");
 var path_1 = require("path");
 function createPlugin(options) {
     var _this = this;
@@ -133,7 +130,7 @@ function createPlugin(options) {
                 htmlCode = "\n      let node = document.getElementById('".concat(finalSymbolId, "');\n      let wrap  = document.getElementById('svg-sprite-component-wrap');\n      if(!wrap){\n        wrap = document.createElementNS('http://www.w3.org/2000/svg', 'svg')\n        wrap.id = 'svg-sprite-component-wrap';\n        wrap.style.setProperty('display', 'none');\n        document.body.appendChild(wrap);\n      }\n      if(!node){\n        let symbol = document.createElementNS('http://www.w3.org/2000/svg', 'symbol')\n        wrap.appendChild(symbol);\n        ").concat(Object.entries(svgNode.attribs).map(function (_a) {
                     var k = _a[0], v = _a[1];
                     return "symbol.setAttribute(\"".concat(k, "\",\"").concat(v, "\");");
-                }).join(''), "\n        symbol.innerHTML = `").concat((0, dom_serializer_1.default)(svgNode.childNodes), "`;\n      }\n\n      ");
+                }).join(''), "\n        symbol.innerHTML = `").concat((0, dom_serializer_1["default"])(svgNode.childNodes), "`;\n      }\n\n      ");
                 cache.set(path, htmlCode + componentCode);
                 return [2 /*return*/, htmlCode + componentCode];
             });
@@ -141,4 +138,4 @@ function createPlugin(options) {
     };
 }
 ;
-exports.default = createPlugin;
+exports["default"] = createPlugin;

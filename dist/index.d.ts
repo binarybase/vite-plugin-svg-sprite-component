@@ -28,6 +28,7 @@ export declare type Options = {
          */
         defaultExport?: boolean;
     };
+    matcher?: RegExp;
 };
 declare function createPlugin(options?: Options): Plugin;
 export default createPlugin;
