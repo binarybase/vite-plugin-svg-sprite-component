@@ -33,12 +33,14 @@ export type Options = {
      *  export default [exportName] as VNode
      * @default false
      */
-    defaultExport?: boolean,
-  }
+    defaultExport?: boolean
+  },
+
+  matcher?: RegExp
 }
 
 function createPlugin(options: Options = {}): Plugin {
-  const { symbolId, component, removeAttrs, transform } = options;
+  const { symbolId, component, removeAttrs, transform, matcher } = options;
 
 
 
@@ -46,7 +48,7 @@ function createPlugin(options: Options = {}): Plugin {
   return {
     name: 'svg-sprite-component',
     transform: async (source, path) => {
-      if (!path.match(/\.svg$/i)) {
+      if (!path.match(matcher || /\.svg$/i)) {
         return source
       }
       let tmp = cache.get(path);
